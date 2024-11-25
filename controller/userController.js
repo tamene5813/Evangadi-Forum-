@@ -46,6 +46,20 @@ async function register(req, res) {
   }
 }
 
+// get all users
+
+async function readAllUsers(req, res) {
+  try {
+    const [users] = await dbConnection.query("SELECT * FROM users");
+    return res.status(StatusCodes.OK).json({ users });
+  } catch (error) {
+    console.log(error.message);
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ msg: "Something went wrong, try again" });
+  }
+}
+
 // login
 async function login(req, res) {
   const { email, password } = req.body;
@@ -80,7 +94,7 @@ async function login(req, res) {
     });
     return res
       .status(StatusCodes.OK)
-      .json({ msg: "user login successful", token });
+      .json({ msg: "user login successful", token, username });
   } catch (error) {
     console.log(error.message);
     return res
@@ -97,4 +111,4 @@ async function checkUser(req, res) {
   res.status(StatusCodes.OK).json({ msg: "valid user", username, userid });
   // res.send("check user");
 }
-module.exports = { register, checkUser, login };
+module.exports = { register, checkUser, login, readAllUsers };
