@@ -14,17 +14,12 @@ const LoginPage = () => {
   const [logInDisplay, setLogInDisplay] = useState("");
   const [regInDisplay, setRegInDisplay] = useState("display");
   const [resetPage, setResetPage] = useState("display");
-  const [errors, setErrors]=useState(false)
+  const [errors, setErrors] = useState(false);
   const [loading, setLoading] = useState({
     signIn: false,
     signUp: false,
   });
-  // targeting all the registration info
-  // const emailDom = useRef(null);
-  // const firstNameDom = useRef(null);
-  // const lastNameDom = useRef(null);
-  // const userNameDom = useRef(null);
-  // const passwordDom = useRef(null);
+
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -57,7 +52,7 @@ const LoginPage = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     if (!email || !firstName || !lastName || !userName || !password) {
-      setErrors(true)
+      setErrors(true);
       alert("Please provide all required information");
       return;
     }
@@ -82,7 +77,7 @@ const LoginPage = () => {
     e.preventDefault();
 
     if (!email || !password) {
-      setErrors(true)
+      setErrors(true);
       alert("Please provide all required information");
     }
     try {
@@ -90,11 +85,12 @@ const LoginPage = () => {
         email: email,
         password: password,
       });
-      alert("Log Successfull");
+      console.log(data.msg);
       localStorage.setItem("token", data.token);
       navigate("/home");
     } catch (error) {
-      console.log(error.response);
+      setErrors(true);
+      console.log(error.response.data.msg);
     }
   }
   return (
@@ -119,15 +115,16 @@ const LoginPage = () => {
               <input
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
-                className={`email_input ${errors && !email ? 'error-bg' : ''}`}
+                className={`email_input ${errors && !email ? "error-bg" : ""}`}
                 name="eva_email"
                 placeholder="Email address"
               />
               <input
                 onChange={(e) => setPassword(e.target.value)}
                 type={showPassword ? "text" : "password"}
-                
-                className={`password__input ${errors && !password ? 'error-bg' : ''}`}
+                className={`password__input ${
+                  errors && !password ? "error-bg" : ""
+                }`}
                 name="password"
                 // value={password}
                 placeholder="Password"
@@ -150,6 +147,12 @@ const LoginPage = () => {
                 Login
               </button>
             </form>
+            {/*Alert for invalid password or email address*/}
+            {errors && (
+              <p className="error-msg">
+                Please enter a valid email address and password.
+              </p>
+            )}
           </div>
           {/* login page end here */}
           {/* ************************** */}
@@ -173,7 +176,7 @@ const LoginPage = () => {
               <input
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"
-                className={`email_input ${errors && !email ? 'error-bg' : ''}`}
+                className={`email_input ${errors && !email ? "error-bg" : ""}`}
                 name="eva_email"
                 placeholder="Email address"
               />
@@ -182,7 +185,7 @@ const LoginPage = () => {
                   onChange={(e) => setFirstName(e.target.value)}
                   id="fname-input"
                   type="text"
-                  className={`f-name ${errors && !firstName ? 'error-bg' : ''}`}
+                  className={`f-name ${errors && !firstName ? "error-bg" : ""}`}
                   name="firstname"
                   placeholder="First Name"
                 />
@@ -190,7 +193,7 @@ const LoginPage = () => {
                   onChange={(e) => setLastName(e.target.value)}
                   id="lname-input"
                   type="text"
-                  className={`l-name ${errors && !lastName ? 'error-bg' : ''}`}
+                  className={`l-name ${errors && !lastName ? "error-bg" : ""}`}
                   name="lastname"
                   placeholder="Last Name"
                 />
@@ -198,7 +201,7 @@ const LoginPage = () => {
                   onChange={(e) => setUserName(e.target.value)}
                   id="userName-input"
                   type="text"
-                  className={`l-name ${errors && !userName ? 'error-bg' : ''}`}
+                  className={`l-name ${errors && !userName ? "error-bg" : ""}`}
                   name="User name"
                   placeholder="User Name"
                 />
@@ -207,7 +210,9 @@ const LoginPage = () => {
                 <input
                   onChange={(e) => setPassword(e.target.value)}
                   type={showPassword ? "text" : "password"}
-                  className={`password__input ${errors && !password ? 'error-bg' : ''}`}
+                  className={`password__input ${
+                    errors && !password ? "error-bg" : ""
+                  }`}
                   name="password"
                   // value={password}
                   placeholder="Password"

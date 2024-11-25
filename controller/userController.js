@@ -67,7 +67,7 @@ async function login(req, res) {
   if (!email || !password) {
     return res
       .status(StatusCodes.BAD_REQUEST)
-      .json({ msg: "please provide all require informatio!" });
+      .json({ msg: "please provide all require information!" });
   }
   try {
     const [user] = await dbConnection.query(

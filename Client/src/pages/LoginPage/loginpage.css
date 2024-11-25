@@ -127,6 +127,13 @@
     justify-content: space-between;
     
 }
+
+.error-msg{
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
 .toggle_password_reg svg{
     position: absolute;
     margin-left: 13vw;
