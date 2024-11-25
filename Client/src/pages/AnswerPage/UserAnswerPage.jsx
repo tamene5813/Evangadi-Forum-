@@ -87,7 +87,9 @@ const UserAnswerPage = ({ answerDisplay }) => {
             ))}
           </div>
         ) : (
-          <p>No answers found.</p>
+          <div className={classes.title}>
+            <h3>No answers found.</h3>
+          </div>
         )}
         <button className={`${classes.btn} butn`}>
           <Link to="/home">Back to Home</Link>
