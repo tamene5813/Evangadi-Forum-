@@ -2,3 +2,19 @@
     margin-top: 100px;
     margin-left: 5%;
 }
+
+.nav_butn {
+    border: none;
+    border-radius: 6px;
+    background: var(--color-buttn-bg);
+    text-align: center;
+    width: 200px; 
+    height: 41px;
+    margin: 10px;
+    color: var(--color-butn-txt);
+}
+
+.nav_butn a {
+    color: #ffff;
+    text-decoration: none;
+}

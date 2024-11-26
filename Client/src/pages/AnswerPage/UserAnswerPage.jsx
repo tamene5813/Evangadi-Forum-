@@ -5,7 +5,7 @@ import axios from "../../axiosConfig";
 import AsherPage from "../Qsher/AsherPage.jsx";
 import Layout from "../Layout/Layout";
 import classes from "./userPage.module.css";
-import { CiEdit } from "react-icons/ci";
+
 
 const UserAnswerPage = ({ answerDisplay }) => {
   const { user, setUser } = useContext(AppState);

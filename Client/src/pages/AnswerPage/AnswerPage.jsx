@@ -13,18 +13,17 @@ const AnswerPage = () => {
   const navigate = useNavigate();
   const [answer, setAnswer] = useState("");
 
-
   function submitAnswer(e) {
     e.preventDefault();
 
     if (!answer) {
       alert("Answer can not be empty");
-      return
+      return;
     }
     const token = localStorage.getItem("token");
     try {
       const answerload = {
-       answer: answer,
+        answer: answer,
       };
       axios.post(`/answer/giveanswer/${questionid}`, answerload, {
         headers: {
@@ -36,19 +35,15 @@ const AnswerPage = () => {
     } catch (error) {}
   }
 
-
-
   return (
     <Layout>
       <section className={classes.explained}>
-       <AnswerTop/>
+        <AnswerTop />
         <div>
           <SingleQuestion />
         </div>
         <div className={classes.answer_container}>
-          <h1 className={classes.answer_text_gradient}>
-            Give a Public Answer
-          </h1>
+          <h1 className={classes.answer_text_gradient}>Give a Public Answer</h1>
 
           <form onSubmit={submitAnswer} className="submit">
             <div className={classes.question}>
@@ -60,7 +55,9 @@ const AnswerPage = () => {
                 onChange={(e) => setAnswer(e.target.value)}
               ></textarea>
             </div>
-            <button type="submit" className={`${classes.nswerButn} butn`}>Submit your Answer</button>
+            <button type="submit" className={`${classes.nswerButn} butn`}>
+              Submit your Answer
+            </button>
           </form>
         </div>
       </section>

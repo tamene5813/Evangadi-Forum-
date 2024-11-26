@@ -7,8 +7,7 @@ const SingleQuestion = () => {
   const [question, setQuestion] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-//   const [showEdit, setShowEdit] = useState(false);
-//   const [showDelete, setShowDelete] = useState(false);
+
   const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
@@ -35,23 +34,6 @@ const SingleQuestion = () => {
     fetchData();
   }, [questionid]);
 
-//   const handleEdit = () => {
-//     setShowEdit(true);
-//   };
-
-//   const handleDelete = () => {
-//     setShowDelete(true);
-//   };
-
-//   const handleEditSuccess = () => {
-//     // You can perform additional actions after successful editing
-//     // For example, redirect the user to the question details page
-//     navigate(`/questions/${id}`);
-//   };
-
-//   const handleDeleteSuccess = () => {
-//     navigate("/questions");
-//   };
   return (
     <>
       <div className={classes.container}>
@@ -68,8 +50,6 @@ const SingleQuestion = () => {
         ) : (
           <p>No question found.</p>
         )}
-
-    
       </div>
     </>
   );

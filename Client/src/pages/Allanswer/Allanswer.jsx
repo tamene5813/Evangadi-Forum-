@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { AppState } from "../../App";
 import { useParams } from "react-router-dom";
 import axios from "../../axiosConfig";
@@ -106,6 +107,11 @@ const Allanswer = () => {
         ) : (
           <p>No answers found.</p>
         )}
+      </div>
+      <div className={classes.allAnswerContainer}>
+        <button className={classes.nav_butn}>
+          <Link to="/home">Back to Home</Link>
+        </button>
       </div>
     </Layout>
   );
