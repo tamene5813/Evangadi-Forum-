@@ -1,14 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import Layout from "../Layout/Layout";
 import axios from "../../axiosConfig";
 import SingleQuestion from "./SingleQuestion";
 import classes from "./answer.module.css";
 import AnswerTop from "./AnswerTop";
 import { useNavigate, useParams } from "react-router-dom";
-import { AppState } from "../../App";
 
 const AnswerPage = () => {
-  const user = useContext(AppState);
   const { questionid } = useParams();
   const navigate = useNavigate();
   const [answer, setAnswer] = useState("");

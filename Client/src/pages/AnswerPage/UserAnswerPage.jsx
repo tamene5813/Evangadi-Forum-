@@ -1,17 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AppState } from "../../App";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "../../axiosConfig";
 import AsherPage from "../Qsher/AsherPage.jsx";
 import Layout from "../Layout/Layout";
 import classes from "./userPage.module.css";
 
-
 const UserAnswerPage = ({ answerDisplay }) => {
-  const { user, setUser } = useContext(AppState);
+  const { user } = useContext(AppState);
   const [answers, setAnswers] = useState([]);
   const [tags, setTags] = useState({});
-  const [error, setError] = useState(null);
   const userid = user.userid;
 
   useEffect(() => {
@@ -87,7 +85,7 @@ const UserAnswerPage = ({ answerDisplay }) => {
             ))}
           </div>
         ) : (
-          <div className={classes.title}>
+          <div>
             <h3>No answers found.</h3>
           </div>
         )}

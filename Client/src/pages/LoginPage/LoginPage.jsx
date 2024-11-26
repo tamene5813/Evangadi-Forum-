@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext } from "react";
+import React, { useRef, useState } from "react";
 import "./loginpage.css";
 import Layout from "../Layout/Layout";
 import { Link } from "react-router-dom";
@@ -15,11 +15,6 @@ const LoginPage = () => {
   const [regInDisplay, setRegInDisplay] = useState("display");
   const [resetPage, setResetPage] = useState("display");
   const [errors, setErrors] = useState(false);
-  const [loading, setLoading] = useState({
-    signIn: false,
-    signUp: false,
-  });
-
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -85,7 +80,6 @@ const LoginPage = () => {
         email: email,
         password: password,
       });
-      console.log(data.msg);
       localStorage.setItem("token", data.token);
       navigate("/home");
     } catch (error) {

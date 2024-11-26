@@ -1,27 +1,19 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import axios from "../../axiosConfig";
-import { SlLike } from "react-icons/sl";
 import { CgProfile } from "react-icons/cg";
-import { SlDislike } from "react-icons/sl";
 import img1 from "../../assets/10002.svg";
 import img2 from "../../assets/10003.svg";
 import img3 from "../../assets/10001.png";
 import { IoSearchOutline } from "react-icons/io5";
-import { AppState } from "../../App";
 import classes from "./home.module.css";
 import LeftProfile from "./LeftProfile";
 
 const QuestionDesplay = () => {
   const { questionid } = useParams();
-  const user = useContext(AppState);
-  const navigate = useNavigate();
   const [questions, setQuestions] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [answer, setAnswer] = useState([]);
   const [filteredQuestions, setFilteredQuestions] = useState([]);
-  const [questionBy, setQuestionsBy] = useState([]);
-  const [whoAsk, setWhoAsk] = useState([]);
   const [userMap, setUserMap] = useState({});
 
   useEffect(() => {
@@ -33,12 +25,9 @@ const QuestionDesplay = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-        // console.log(data);
+
         setQuestions(data.task);
         const userIds = data.task.map((question) => question.userid);
-        // setQuestionsBy(userIds);
-        // console.log(data.task);
-        // console.log(userIds);
       } catch (error) {
         console.error("Error fetching questions:", error);
       }
@@ -62,7 +51,6 @@ const QuestionDesplay = () => {
           userMapping[user.userid] = user.username;
         });
         setUserMap(userMapping);
-        // console.log(userMapping);
       } catch (error) {
         console.error("Error fetching user:", error);
       }

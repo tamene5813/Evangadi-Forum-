@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "../../axiosConfig";
 import classes from "./answer.module.css";
 const SingleQuestion = () => {
   const { questionid } = useParams();
   const [question, setQuestion] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
-  const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem("token");
@@ -22,7 +20,6 @@ const SingleQuestion = () => {
           }
         );
         setQuestion(response.data[0]);
-        // console.log(response.data);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching question:", error);

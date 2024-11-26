@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "../../axiosConfig";
 import Layout from "../Layout/Layout";
 import { AppState } from "../../App";
@@ -7,13 +7,9 @@ import QsherPage from "../Qsher/QsherPage.jsx";
 import classes from "./userPage.module.css";
 
 const UserQuestion = () => {
-  const { id } = useParams();
-  const { user, setUser } = useContext(AppState);
+  const { user } = useContext(AppState);
   const userid = user.userid;
-  // const { userid } = useParams();
   const [question, setQuestion] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -26,7 +22,6 @@ const UserQuestion = () => {
           },
         });
         setQuestion(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error("Error fetching question:", error);
         setError("Error fetching question. Please try again.");

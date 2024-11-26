@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { AppState } from "../../App";
 import { useParams } from "react-router-dom";
 import axios from "../../axiosConfig";
 import classes from "./Allanswer.module.css";
@@ -8,9 +7,7 @@ import Layout from "../Layout/Layout";
 
 const Allanswer = () => {
   const { questionid } = useParams();
-  const user = useContext(AppState);
   const [answers, setAnswers] = useState([]);
-  const [error, setError] = useState(null);
   const [userMap, setUserMap] = useState({});
   const [question, setQuestion] = useState([]);
 
@@ -70,7 +67,6 @@ const Allanswer = () => {
           userMapping[user.userid] = user.username;
         });
         setUserMap(userMapping);
-        console.log(userMapping);
       } catch (error) {
         console.error("Error fetching user:", error);
       }

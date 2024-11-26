@@ -8,7 +8,6 @@ import avatarIcon from "../../assets/avater.jpg";
 const Navbar = () => {
   const { user, setUser } = useContext(AppState);
   const userid = user ? user.userid : null;
-  // console.log(user);
   const navigate = useNavigate();
   const location = useLocation();
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);

@@ -1,5 +1,4 @@
-import { useContext, useState, useEffect } from "react";
-import { AppState } from "../../App";
+import { useState } from "react";
 import "./questionAnswer.css";
 import Layout from "../Layout/Layout";
 import axios from "../../axiosConfig";
@@ -7,22 +6,17 @@ import { useNavigate } from "react-router-dom";
 import { BsCheck2Square } from "react-icons/bs";
 import img from "../../assets/stick_figure_sit_in_question_mark_300_nwm (1).jpg";
 
-
 const Question = () => {
-  const user = useContext(AppState);
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [discription, setDiscription] = useState("");
-  const [questionResponse, setQuestionResponse] = useState("");
-
-
 
   function submitQuestion(e) {
     e.preventDefault();
 
     if (!title || !discription) {
       alert("Question title or Discrtiption can not be empty");
-      return
+      return;
     }
     const token = localStorage.getItem("token");
     try {
@@ -87,9 +81,7 @@ const Question = () => {
         </div>
         <div className="ask_container">
           <h1 className="text-gradient">Ask a Public Question</h1>
-          {/* <select className="tag" name="" id="">
-              <option value="">Select Tag</option>
-            </select> */}
+
           <form action="" onSubmit={submitQuestion}>
             <div className="title_contener">
               <input
